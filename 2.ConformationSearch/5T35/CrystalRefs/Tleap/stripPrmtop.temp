@@ -1,0 +1,26 @@
+
+parm complex.gas.prmtop [1]
+parm complex.gas.prmtop [2]
+parm complex.gas.prmtop [3]
+parm complex.gas.prmtop [4]
+parm complex.gas.prmtop [5]
+parm complex.gas.prmtop [6]
+
+parmstrip :1-111:253 parm [1]
+parmwrite out VHL.prmtop parm [1]
+
+parmstrip :1-252 parm [2]
+parmwrite out protac.prmtop parm [2]
+
+parmstrip :112-253 parm [3]
+parmwrite out BRD4.prmtop parm [3]
+
+parmstrip :253 parm [4]
+parmwrite out 2proteins.prmtop parm [4]
+
+parmstrip :1-111 parm [5]
+parmwrite out VHL+protac.prmtop parm [5]
+
+parmstrip :112-252 parm [6]
+parmwrite out BRD4+protac.prmtop parm [6]
+

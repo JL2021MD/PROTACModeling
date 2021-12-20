@@ -1,0 +1,46 @@
+#!/usr/bin/sh     
+
+parm ../00/Tleap/complex.gas.prmtop [1]
+parm ../01/Tleap/complex.gas.prmtop [2]
+
+trajin ../00/PMEMD.1/2-10.BRD4align.nc 417 last parm [1] #0
+trajin ../00/PMEMD.2.found/2-10.BRD4align.nc 417 last parm [1] #1
+trajin ../00/PMEMD.3/2-10.BRD4align.nc 417 last parm [1] #2
+trajin ../00/PMEMD.4/2-10.BRD4align.nc 417 last parm [1] #3
+trajin ../00/PMEMD.5/2-10.BRD4align.nc 417 last parm [1] #4
+trajin ../00/PMEMD.6.found/2-10.BRD4align.nc 417 last parm [1] #5
+trajin ../00/PMEMD.7/2-10.BRD4align.nc 417 last parm [1] #6
+trajin ../00/PMEMD.8/2-10.BRD4align.nc 417 last parm [1] #7
+trajin ../00/PMEMD.9/2-10.BRD4align.nc 417 last parm [1] #8
+trajin ../00/PMEMD.10/2-10.BRD4align.nc 417 last parm [1] #9
+
+trajin ../01/PMEMD1/2-10.BRD4align.nc 417 last parm [2] #1001-1100
+trajin ../01/PMEMD2/2-10.BRD4align.nc 417 last parm [2] #1101-1200
+trajin ../01/PMEMD3/2-10.BRD4align.nc 417 last parm [2] #1201-1300
+trajin ../01/PMEMD4/2-10.BRD4align.nc 417 last parm [2] #1301-1400
+trajin ../01/PMEMD5/2-10.BRD4align.nc 417 last parm [2] #1401-1500
+trajin ../01/PMEMD6/2-10.BRD4align.nc 417 last parm [2] #1501-1600
+trajin ../01/PMEMD7/2-10.BRD4align.nc 417 last parm [2] #1601-1700
+trajin ../01/PMEMD8/2-10.BRD4align.nc 417 last parm [2] #1701-1800
+trajin ../01/PMEMD9/2-10.BRD4align.nc 417 last parm [2] #1801-1900
+trajin ../01/PMEMD10/2-10.BRD4align.nc 417 last parm [2] #1901-2000
+
+# calls the cluster command and sets the data set name\
+
+cluster c1 \
+ dbscan minpoints 1 epsilon 1.5 sievetoframe \
+ rms :112-202,244-252@CA|:253@CAA,CAV,CCF,CBC,C,OD1,N,CCQ,CBT nofit \
+ out cnumvtime.dat \
+ summary summary.dat \
+ info info.dat \
+ cpopvtime cpopvtime.agr normframe \
+ repout rep repfmt pdb \
+ singlerepout singlerep.nc singlerepfmt netcdf
+run
+
+#Write cluster number versus time to a file with the name cnumvtime.dat.
+#Write overall clustering summary to summary.dat
+#Write detailed cluster results (including DBI, pSF etc) to info.dat.
+#Write cluster population vs time to ‘cpopvtiime.agr’, normalized by #frames. The ‘agr’ file is an XMGRACE plot. 
+#Write cluster representative structure to ‘repX’ with PDB format, where X is the cluster number.
+#Write all cluster representatives to ‘singlerep.nc’ with NetCDF format.

@@ -1,0 +1,55 @@
+#!/usr/bin/sh     
+
+parm ../00/Tleap/complex.gas.prmtop [1]
+parm ../04/Tleap/complex.gas.prmtop [2]
+
+trajin ../00/PMEMD1/2-10.BRD4align.nc 417 last parm [1] #0
+trajin ../00/PMEMD2/2-10.BRD4align.nc 417 last parm [1] #1
+trajin ../00/PMEMD3/2-10.BRD4align.nc 417 last parm [1] #2
+trajin ../00/PMEMD4/2-10.BRD4align.nc 417 last parm [1] #3
+trajin ../00/PMEMD5/2-10.BRD4align.nc 417 last parm [1] #4
+trajin ../00/PMEMD6/2-10.BRD4align.nc 417 last parm [1] #5
+trajin ../00/PMEMD7/2-10.BRD4align.nc 417 last parm [1] #6
+trajin ../00/PMEMD8/2-10.BRD4align.nc 417 last parm [1] #7
+trajin ../00/PMEMD9/2-10.BRD4align.nc 417 last parm [1] #8
+trajin ../00/PMEMD10/2-10.BRD4align.nc 417 last parm [1] #9
+
+trajin ../04/PMEMD1/2-10.BRD4align.nc 417 last parm [2] #10
+trajin ../04/PMEMD2.found/2-10.BRD4align.nc 417 last parm [2] #11
+trajin ../04/PMEMD3/2-10.BRD4align.nc 417 last parm [2] #12
+trajin ../04/PMEMD4/2-10.BRD4align.nc 417 last parm [2] #13
+trajin ../04/PMEMD5/2-10.BRD4align.nc 417 last parm [2] #14
+trajin ../04/PMEMD6/2-10.BRD4align.nc 417 last parm [2] #15
+trajin ../04/PMEMD7/2-10.BRD4align.nc 417 last parm [2] #16
+trajin ../04/PMEMD8/2-10.BRD4align.nc 417 last parm [2] #17
+trajin ../04/PMEMD9/2-10.BRD4align.nc 417 last parm [2] #18
+trajin ../04/PMEMD10/2-10.BRD4align.nc 417 last parm [2] #19
+
+trajin ../04/PMEMD.11/2-10.BRD4align.nc 417 last parm [2] #20
+trajin ../04/PMEMD.12/2-10.BRD4align.nc 417 last parm [2] #21
+trajin ../04/PMEMD.13/2-10.BRD4align.nc 417 last parm [2] #22
+trajin ../04/PMEMD.14/2-10.BRD4align.nc 417 last parm [2] #23
+trajin ../04/PMEMD.15/2-10.BRD4align.nc 417 last parm [2] #24
+trajin ../04/PMEMD.16.found/2-10.BRD4align.nc 417 last parm [2] #25
+trajin ../04/PMEMD.17/2-10.BRD4align.nc 417 last parm [2] #26
+trajin ../04/PMEMD.18/2-10.BRD4align.nc 417 last parm [2] #27
+trajin ../04/PMEMD.19/2-10.BRD4align.nc 417 last parm [2] #28
+trajin ../04/PMEMD.20/2-10.BRD4align.nc 417 last parm [2] #29
+
+cluster c1 \
+ dbscan minpoints 1 epsilon 1.5 sievetoframe \
+ rms :112-202,244-252@CA|:253@CAA,CAV,CCF,CBC,C,OD1,N,CCQ,CBT nofit \
+ out cnumvtime.dat \
+ summary summary.dat \
+ info info.dat \
+ cpopvtime cpopvtime.agr normframe \
+ repout rep repfmt pdb \
+ singlerepout singlerep.nc singlerepfmt netcdf
+run
+
+#Write cluster number versus time to a file with the name cnumvtime.dat.
+#Write overall clustering summary to summary.dat
+#Write detailed cluster results (including DBI, pSF etc) to info.dat.
+#Write cluster population vs time to ‘cpopvtiime.agr’, normalized by #frames. The ‘agr’ file is an XMGRACE plot. 
+#Write cluster representative structure to ‘repX’ with PDB format, where X is the cluster number.
+#Write all cluster representatives to ‘singlerep.nc’ with NetCDF format.

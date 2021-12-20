@@ -1,0 +1,26 @@
+#### tleap -f tleap.build.in
+
+
+source leaprc.protein.ff19SB
+source leaprc.gaff2
+
+source leaprc.water.opc
+
+loadamberparams frcmod.ions1lm_126_iod_opc
+
+set default PBradii mbondi2
+
+rec=loadpdb ../2proteins.pdb
+
+###Load Ligand frcmod/prep
+
+loadamberparams ../ligand.frcmod
+lig=loadmol2 ../PROTAC_gaff2.mol2
+
+gascomplex= combine {rec lig}
+
+savepdb gascomplex complex.gas.pdb
+saveamberparm gascomplex complex.gas.prmtop complex.gas.rst7
+
+quit
+

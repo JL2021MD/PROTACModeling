@@ -1,0 +1,44 @@
+#!/usr/bin/sh     
+
+parm ../Tleap/complex.gas.prmtop [1]
+
+trajin ../PMEMD1/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD2/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD3/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD4/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD5/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD6/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD7/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD8/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD9/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD10/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD11/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD12/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD13/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD14/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD15/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD16/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD17/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD18/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD19/2-10.BDalign.nc 417 last parm [1]
+trajin ../PMEMD20/2-10.BDalign.nc 417 last parm [1]
+
+# calls the cluster command and sets the data set name
+
+cluster c1 \
+ dbscan minpoints 1 epsilon 1.5 sievetoframe \
+ rms :114-204,246-254@CA|:255@CAV,CCH,CCA,CAU,C,OD1,CBW,CB,NBN,C38,C61,C64,N41 nofit \ 
+ out cnumvtime.dat \
+ summary summary.dat \
+ info info.dat \
+ cpopvtime cpopvtime.agr normframe \
+ repout rep repfmt pdb \
+ singlerepout singlerep.nc singlerepfmt netcdf
+run
+
+#Write cluster number versus time to a file with the name cnumvtime.dat.
+#Write overall clustering summary to summary.dat
+#Write detailed cluster results (including DBI, pSF etc) to info.dat.
+#Write cluster population vs time to ‘cpopvtiime.agr’, normalized by #frames. The ‘agr’ file is an XMGRACE plot. 
+#Write cluster representative structure to ‘repX’ with PDB format, where X is the cluster number.
+#Write all cluster representatives to ‘singlerep.nc’ with NetCDF format.
