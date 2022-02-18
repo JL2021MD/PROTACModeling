@@ -1,0 +1,10 @@
+parm complex.gas.prmtop
+trajin 2-4.BRD4align.nc
+reference complex.gas.rst7
+
+rmsd CRBN reference ":128-268,325-502@CA" out RMSDresults.csv nofit
+rmsd CRBNsidetoCrystal reference ":504@O3,O4,C20,C23,N6,C26,O7" out RMSDresults.csv nofit
+rmsd linker reference ":504@C16,N4,C13,C11,C9,C7" out RMSDresults.csv nofit
+rmsd BRD4 reference ":20-122@CA" out RMSDresults.csv nofit
+rmsd BRD4sidetoCrystal reference ":504@Cl1,C31,C41,C6,C2,C4,C3,C38" out RMSDresults.csv nofit
+

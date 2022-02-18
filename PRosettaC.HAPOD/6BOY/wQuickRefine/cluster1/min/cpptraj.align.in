@@ -1,0 +1,16 @@
+parm complex.opc.prmtop [1]
+parm complex.gas.prmtop [2]
+trajin complex.opc.rst7
+trajin 02.min.rst7
+trajin 03.min.rst7
+trajin 04.min.rst7
+#trajin 10.prod.trj
+#trajin 11.prod.trj
+strip :WAT:Na+:Cl-
+autoimage
+
+reference complex.gas.rst7 parm [2]
+#rms rms1 :27,37,51,91@CA reference
+rms rms1 :20-122@CA reference
+trajout 2-4.BRD4align.nc
+trajout 2-4.BRD4align.pdb
