@@ -5,7 +5,7 @@ If you find our method helpful please cite this paper: In Silico Modeling and Sc
 
 The straightforward idea is that the correct, native pose having the most favorable binding affinity will be most stable and resistant to the short linear heating trials, while non-native poses generally do not. The method is meant to be easy to use involving only classic MD for the best simplicity. The scripts run natively with AMBER, although the idea and method should work the same with other engines and force fields. Bulk linear heating of the whole system, used in the method, while can be a bit brute, works very effectively due to the large binding interface of protein-proteins, even though it may not be precise enough for small molecule-protein systems. The explicit OPC waters will stabily remain liquid unless the simulated temperature is >650K or so under NPT conditions.
 
-A pose refinement before the heating-accelerated pose departure (HAPOD) trials will be important because this refinement will help the interface residues and sidechains fit better with each other, compared to docking outputs, or a force field different than the one used in HAPOD.
+A quick pose refinement before the heating-accelerated pose departure (HAPOD) trials will be important because this refinement will help the interface residues and sidechains fit better with each other, compared to docking outputs, or a force field different than the one used in HAPOD.
 
 Notes: 
 Please note that in most of the MD runs used here the gamma_ln is set to 0.01 which provides a bit of an increase in conformation change speed compared to gamma_ln=2
