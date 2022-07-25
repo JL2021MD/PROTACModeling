@@ -1,0 +1,18 @@
+min_eq_rst=":1-512 & !@H="
+
+aligned_forstrip=":20-122@CA"
+
+rmsd_unaligned_protein="CRBN"
+rmsd_unaligned_residues=":128-270,335-511@CA"
+rmsd_aligned_protein="BRD4"
+rmsd_aligned_residues=":20-122@CA"
+rmsd_unaligned_lig="CRBNlig"
+rmsd_unaligned_ligatoms=":512@O5,O3,O4,O,C39,C31,C40"
+rmsd_aligned_lig="BRD4lig"
+rmsd_aligned_ligatoms=":512@Cl,C19,C28,C16,C13,C11,N5,C15,C27"
+rmsd_linkeratoms=":512@O2,N1,C8,C6,C4,C2,N,O1,C"
+
+#Set nmropt to 1 if there are additional restraints during the equilibration and production run. Uncomment and include the restraints file below.
+nmropt=1
+
+more_rsts=$'DISANG=zinc.rst \nLISTOUT=POUT'
