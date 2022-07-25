@@ -1,0 +1,22 @@
+## This is the MD simulation for the heating (HAPOD scoring). The run script is heat.sh. If you are using a computing cluster, you should be able to submit the jobs (PMEMD1-10 for each pose) together. Otherwise run them locally by copying the heat.sh script into each PMEMD* folder.
+
+## At the end of the heat.sh script is the included HAPOD.py script which extracts scores from the generated RMSDresults.csv file for each individual run as they finish. 
+
+## The next step 7.getscores.sh will read each and all of the HAPOD.out files and calculate a combined score of the 10 runs.
+
+## To quickly move forward without running any MD, run the following script to link over already generated output files. You will then be able to proceed to the next step.
+
+for i in {1..5}; do
+for k in {1..10}; do
+ln -s ../../../Other/ForQuickDemo/$i/HAPOD/PMEMD$k/{HAPOD.out,HAPOD.py,RMSDresults.csv} $i/HAPOD/PMEMD$k/ -v
+done
+done
+exit
+
+## To undo,
+
+for i in {1..5}; do
+for k in {1..10}; do
+rm  $i/HAPOD/PMEMD$k/* -v
+done
+done

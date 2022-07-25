@@ -1,0 +1,22 @@
+## This is the MD simulation for the quick refinements. The run script is refine.sh. If you are using a computing cluster, you should be able to submit the jobs (Refine1-5 for each pose) together. Otherwise run them locally by copying the refine.sh script (and also inputs.in) into each Refine* folder.
+
+## Occasionally, the GPU version of AMBER MD pmemd.cuda may run into issues starting the minimization and equilibration, as is the case with pose 5. In such scenario, a CPU code (pmemd.MPI) should be run instead for the first minimization input (01.min.in). Because there is no random seed involved in minimization, the results are exact each time and the generated 01.min.rst7 restart file can then be used for all refinement trials and the GPU version can be used to continue, starting at the 02.equil.min files. 
+
+## The CPU script is provided at ./Other/MinOnly.Pose5.Refine/minOnly, and the 01.min.rst7 file is provided at ./Other/MinOnly.Pose5.Refine/01.min.rst7 for direct use. Copy the CPU script to a relevant folder for use. Your generated 01.min.rst7 file (or using the provided one) should be copied to the 5/Tleap folder to make it easily applicable for all 5 refinement trajectories. 
+
+## To quickly move forward without running any MD, run the following script to link over already generated output files. You will then be able to proceed to the next step.
+
+for i in {1..5}; do
+for k in {1..5}; do
+ln -s ../../Other/ForQuickDemo/$i/Refine$k/2-10.align.nc $i/Refine$k/ -v
+done
+done
+exit 
+
+## To undo,
+
+for i in {1..5}; do
+for k in {1..5}; do
+rm $i/Refine$k/2-10.align.nc -v
+done
+done
