@@ -64,7 +64,7 @@ EOF
 
 
 echo "Started Equil and MD on `date` "
-#do_cuda="pmemd.cuda" 
+do_cuda="pmemd.cuda" 
 do_cpu="mpirun -np 16 pmemd.MPI"
 prmtop="complex.HMR.opc.prmtop"
 coords="complex.opc" 
