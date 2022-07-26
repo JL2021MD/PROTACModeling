@@ -1,8 +1,5 @@
 These are the top 5 diverse poses from 3MXF-4TZ4 ternary docking (the example). The 11_11 is the near-native one. 
 
-The script will put each of them into seperate folders. Note the near native 11_11 will be put into folder 1 because of the numerical order of reading files by bash.
-
-
 These are the final scores for the input structures, generated from ternary docking (Integrative Modeling of PROTAC-Mediated Ternary Complexes, Gao et. al. 2021, J.Med.Chem.). These scores reflect the last step after Rosetta redock, and are calculated by VoroMQA.
 
 The crystal-matching pose (11_11) is found, but ranks no.3. HAPOD rescoring here as demonstrated in the current quick start example will be able to rank it at the top.
