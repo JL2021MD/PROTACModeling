@@ -2,7 +2,7 @@
 ## Adding AM1-BCC charges to the PROTAC molecules may take 1-2 hours, because of the molecule being pretty large. For the example run, to save time one can use the already generated output files here. Set demo=0 to run yourself.
 
 demo=0
-if [ $demo -eq 1 ]
+if [ $demo -eq 0 ]
 then
 for i in {1..4}; do
 cd $i
@@ -22,7 +22,7 @@ done
 cd 5
 cat >add_charge_frcmod.sh <<EOF
 
-antechamber -i protac.pdb -fi pdb -o protac_gaff2.mol2 -fo mol2 -c gas -nc 0 -at gaff2 
+antechamber -i protac.pdb -fi pdb -o protac_gaff2.mol2 -fo mol2 -c bcc -nc 0 -at gaff2 
 
 rm *.AC *.INF *.AC0 sqm.pdb sqm.in sqm.out
 parmchk2 -i protac_gaff2.mol2 -f mol2 -s 2 -o ligand.frcmod
@@ -32,7 +32,7 @@ EOF
 bash add_charge_frcmod.sh
 cd ..
 
-echo "Wait for all background processes (sqm) to finish and all 5 poses to print the finished messages."
+echo "Wait for all background processes (sqm) to finish and all (5) poses to print the finished messages."
 # -nc 0 is the net charge of the ligand being 0 in our case.
 
 else
