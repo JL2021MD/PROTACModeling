@@ -35,6 +35,8 @@ cd $k
 ln -s ../$j .
 antechamber -i ligand.pdb -fi pdb -o ligand2.pdb -fo pdb
 #this gives atoms unique names, needed for selecting atoms in Chimera (next script) to correct the atom type.
+
+#the selected atoms here pertain to the ones that need atom type correction in the demo, after being already inspected in Chimera. For your own molecules, run this 1.preparePDBs.sh once without the 2 lines of "setattr" below, and inspect to see which atoms need correction, and add to the "setattr" lines below. Delete the 1-xx folders, and then rerun 1.preparePDBs.sh. You may need to do this several times iteratively. Most errors will be caught in the 2.prepareForRefine.sh step.
 cat >addH.com<<EOF
 setattr a idatmType C3 :UNL@C,C2,C3,C4,C5,C6,C7,C8,C9
 setattr a idatmType Npl :UNL@N1,N
