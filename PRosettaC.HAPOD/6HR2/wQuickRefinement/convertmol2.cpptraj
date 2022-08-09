@@ -1,4 +1,0 @@
-parm /media/HDD2/James/TernarySearch/PRosetta/6HR2/protac.prmtop
-
-trajin protac.pdb
-trajout protac_gaff2.mol2

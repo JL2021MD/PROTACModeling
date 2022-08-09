@@ -1,4 +1,0 @@
-parm protac.prmtop
-
-trajin avgProtac.pdb
-trajout protac_gaff2.mol2
