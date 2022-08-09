@@ -1,3 +1,0 @@
-Advanced Options
-Receptor Attraction	c-87 c-146 c-140 c-83 (BRD4)
-Ligand Attraction	b-357 b-386 b-352 (CRBN)
