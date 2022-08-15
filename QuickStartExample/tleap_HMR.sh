@@ -1,6 +1,9 @@
 current=`pwd`
 mkdir $current/Tleap
 cd  $current/Tleap
+##To address file name difference in Amber22 from previous versions. The one that exists will be linked over. Using cp instead of ln will not create the link if the source file doesn't exist
+cp -s $AMBERHOME/dat/leap/parm/frcmod.ions1lm_126_iod_opc frcmod.ions1lm_126_iod_opc -v
+cp -s $AMBERHOME/dat/leap/parm/frcmod.ionslm_126_iod_opc frcmod.ions1lm_126_iod_opc -v
 
 cat > tleap.build.in <<EOF
 #### tleap -f tleap.build.in
@@ -10,7 +13,7 @@ source leaprc.protein.ff19SB
 source leaprc.gaff2
 
 source leaprc.water.opc
-loadamberparams frcmod.ions1lm_126_iod_opc
+loadamberparams $current/Tleap/frcmod.ions1lm_126_iod_opc
 
 set default PBradii mbondi2
 
@@ -54,6 +57,10 @@ HMassRepartition
 outparm complex.HMR.gas.prmtop
 EOF
 tleap -f tleap.build.in
+
+##Delete the temp copied over ion parameter file
+rm frcmod.ions1lm_126_iod_opc -v
+
 parmed -p complex.opc.prmtop -i parmed1.in
 
 cat > stripPrmtop.temp <<EOF
